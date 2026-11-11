@@ -55,7 +55,8 @@
     "package": "bun run build:web-assets && bun run prepare:opencode-cli && bun run prepare:ripgrep && bun run bundle:main && bun run rebuild:native && node ./scripts/package.mjs",
     "finalize:latest-yml": "node ./scripts/finalize-latest-yml.mjs",
     "type-check": "node --check ./entry.mjs && node --check ./early-startup.mjs && node --check ./main.mjs && node --check ./preload.mjs && node --check ./browser-panel-preload.cjs",
-    "lint": "node -e \"process.exit(0)\""
+    "lint": "node -e \"process.exit(0)\"",
+    "package:fork": "bun run build:web-assets && bun run prepare:opencode-cli && bun run prepare:ripgrep && bun run bundle:main && bun run rebuild:native && node ./scripts/fork-package.mjs"
   },
   "build": {
     "appId": "dev.openchamber.desktop",

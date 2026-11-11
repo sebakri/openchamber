@@ -30,7 +30,10 @@ recordEarlyStartupMark('electron.entry');
 // Set the product name early so electron-log derives its log directory as
 // ~/Library/Logs/OpenChamber/ (not ~/Library/Logs/@openchamber/electron/).
 const versionBeforeRename = app.getVersion();
-app.setName('OpenChamber');
+// Personal fork: a packaged macOS app named differently (e.g. "OpenChamber Fork")
+// keeps its own name, so it gets its own userData, logs and single-instance lock.
+const packagedProductName = process.platform === 'darwin' && app.isPackaged ? path.basename(process.execPath) : '';
+app.setName(packagedProductName || 'OpenChamber');
 // An unpackaged run on Linux reports version "0.0" after the rename, and
 // electron-updater refuses a version that is not semver, so the dev app quit
 // before its first window. Restoring the version from before the rename gives
